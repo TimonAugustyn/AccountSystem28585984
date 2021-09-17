@@ -1,0 +1,6 @@
+# Project exclude paths
+/AccountSystemDomain/target/
+/AccountSystemLog/target/
+/AccountSystemRepository/target/
+/AccountSystemTranslator/target/
+/AccountSystemWebSpringBoot/target/
