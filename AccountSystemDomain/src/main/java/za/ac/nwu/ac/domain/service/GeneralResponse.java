@@ -7,16 +7,16 @@ import java.util.Objects;
 
 public class GeneralResponse<T> implements Serializable {
 
-    private final boolean succesful;
+    private final boolean successful;
     private final transient  T payload;
 
-    public GeneralResponse(boolean succesful, T payload)
+    public GeneralResponse(boolean successful, T payload)
     {
-        this.succesful = succesful;
+        this.successful = successful;
         this.payload = payload;
     }
 
-    public boolean isSuccesful() {return succesful;}
+    public boolean isSuccessful() {return successful;}
 
     public T getPayload() {
         return payload;
@@ -28,17 +28,17 @@ public class GeneralResponse<T> implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GeneralResponse<?> that = (GeneralResponse<?>) o;
-        return succesful == that.succesful && Objects.equals(payload, that.payload);
+        return successful == that.successful && Objects.equals(payload, that.payload);
     }
 
     @Override
-    public int hashCode() {return Objects.hash(succesful, payload);}
+    public int hashCode() {return Objects.hash(successful, payload);}
 
     @Override
     public String toString()
     {
         return "GeneralResponse{" +
-                "succesgul= " + succesful +
+                "successful= " + successful +
                 ", payload= " + payload +
                 '}';
     }
