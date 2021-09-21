@@ -7,21 +7,21 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "VOUCHER")
+@Table(name = "VOUCHER", schema = "TIMON")
 public class Vouchers implements Serializable {
     @Id
     @Column(name = "VOUCHER_ID")
     private Long voucherId;
 
     @Column(name = "VOUCHER_CAT")
-    private Long voucherCat;
+    private String voucherCat;
 
     @Column(name = "VOUCHER_PRICE")
     private Long voucherPrice;
 
     @Column(name = "VOUCHER_PARTNER")
-    private Long voucherPartner;
+    private String voucherPartner;
 
     @Column(name = "VOUCHER_Name")
-    private Long voucherName;
+    private String voucherName;
 }

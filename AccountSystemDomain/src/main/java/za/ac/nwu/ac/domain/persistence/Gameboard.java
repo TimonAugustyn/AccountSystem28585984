@@ -8,7 +8,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "GAMEBOARD")
+@Table(name = "GAMEBOARD", schema = "TIMON")
 public class Gameboard implements Serializable {
     @Id
     @Column(name = "MEMBER_ID")
@@ -19,10 +19,10 @@ public class Gameboard implements Serializable {
     private Long milesRecieved;
 
     @Column(name = "PLAYS")
-    private LocalDate plays;
+    private Long plays;
 
     @Column(name = "TILE_AMOUNTS")
-    private LocalDate tileAmounts;
+    private Long tileAmounts;
 
     private Set<Member> member;
 

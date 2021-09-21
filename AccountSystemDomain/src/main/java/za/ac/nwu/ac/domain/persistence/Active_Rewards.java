@@ -8,7 +8,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "ACTIVE_REWARDS")
+@Table(name = "ACTIVE_REWARDS", schema = "TIMON")
 public class Active_Rewards implements Serializable {
     @Id
     @Column(name = "ACTIVE_REWARDS_ID")
@@ -19,13 +19,13 @@ public class Active_Rewards implements Serializable {
     private Long plays;
 
     @Column(name = "DRIVING_PROGRESS")
-    private LocalDate drivingProgress;
+    private Long drivingProgress;
 
     @Column(name = "SPENDING_PROGRESS")
-    private LocalDate spendingProgress;
+    private Long spendingProgress;
 
     @Column(name = "FITNESS_PROGRESS")
-    private LocalDate fitnessProgress;
+    private Long fitnessProgress;
 
     private Set<Member> member;
 

@@ -7,15 +7,15 @@ package za.ac.nwu.ac.domain.persistence;
 
 
 @Entity
-@Table(name = "MEMBER")
+@Table(name = "MEMBER", schema = "TIMON")
 public class Member implements Serializable {
     @Id
     @Column(name = "MEMBER_ID")
     private Long memberId;
 
     @Column(name = "MEMBER_FNAME")
-    private Long memberFname;
+    private String memberFname;
 
     @Column(name = "MEMBER_LNAME")
-    private LocalDate memberLname;
+    private String memberLname;
 }
