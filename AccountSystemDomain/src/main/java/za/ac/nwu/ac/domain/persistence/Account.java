@@ -8,7 +8,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "ACCOUNT")
+@Table(name = "ACCOUNT", schema = "TIMON")
 public class Account implements Serializable {
     @Id
     @Column(name = "ACCOUNT_ID")
@@ -23,13 +23,13 @@ public class Account implements Serializable {
     private Long plays;
 
     @Column(name = "VOUCHER_ID")
-    private LocalDate voucherId;
+    private Long voucherId;
 
     @Column(name = "MILES_RECIEVED")
-    private LocalDate milesRecieved;
+    private Long milesRecieved;
 
     @Column(name = "MILES")
-    private LocalDate miles;
+    private Long miles;
 
     private Set<Member> member;
 
