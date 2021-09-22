@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @ApiModel(value = "AccountType", description = "A DTO that represents the AccountType")
 public class AccountTypeDto implements Serializable{
-    //private static final long serialVersionUID = -
+    private static final long serialVersionUID = -5346853206480289868L;
 
     private String mnemonic;
     private String accountTypeName;
@@ -59,14 +59,14 @@ public class AccountTypeDto implements Serializable{
             required = false)
     public LocalDate getCreationDate() {return creationDate;}
 
-    public void getCreationDate(LocalDate creationDate) {this.creationDate = creationDate;}
+    public void setCreationDate(LocalDate creationDate) {this.creationDate = creationDate;}
 
     @Override
     public boolean equals(Object o){
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountTypeDto that = (AccountTypeDto) o;
-        return Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate)
+        return Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
     }
 
     @JsonIgnore

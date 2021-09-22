@@ -3,20 +3,23 @@ package za.ac.nwu.ac.web.sb.controller;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import logic.flow.CreateAccountTypeFlow;
+import logic.flow.FetchAccountTypeFlow;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.domain.persistence.AccountType;
 import za.ac.nwu.ac.domain.service.GeneralResponse;
 
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("account-type")
 public class AccountTypeController {
 
     private final FetchAccountTypeFlow fetchAccountTypeFlow;
@@ -40,6 +43,7 @@ public class AccountTypeController {
     public ResponseEntity<GeneralResponse<List<AccountTypeDto>>> getAll(){
         List<AccountTypeDto> accountTypes = fetchAccountTypeFlow.getAllAccountTypes();
         GeneralResponse<List<AccountTypeDto>> response = new GeneralResponse<>(true, accountTypes);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("")
@@ -57,5 +61,4 @@ public class AccountTypeController {
         GeneralResponse<AccountTypeDto> response = new GeneralResponse<>(true, accountTypeResponse);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-    )
 }

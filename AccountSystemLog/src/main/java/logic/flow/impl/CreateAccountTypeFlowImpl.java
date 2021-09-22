@@ -1,16 +1,16 @@
 package logic.flow.impl;
 
 import org.springframework.stereotype.Component;
-import za.ac.nwu.domain.dto.AccountTypeDto;
+import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import logic.flow.CreateAccountTypeFlow;
-import za.ac.nwu.ac.translator.AccountTypeTranslator;
+import za.ac.nwu.ac.translator.impl.AccountTypeTranslator;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Transactional
 @Component("createAccountTypeFlowName")
-public class CreateAccountTypeFlowImpl {
+public class CreateAccountTypeFlowImpl implements CreateAccountTypeFlow{
     private final AccountTypeTranslator accountTypeTranslator;
     public CreateAccountTypeFlowImpl(AccountTypeTranslator accountTypeTranslator){
         this.accountTypeTranslator = accountTypeTranslator;
