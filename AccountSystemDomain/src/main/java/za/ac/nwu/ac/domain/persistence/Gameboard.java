@@ -45,4 +45,89 @@ public class Gameboard implements Serializable {
     public void activeRewards(Set<Active_Rewards> activeRewards){
         this.activeRewards = activeRewards;
     }
+
+    public Gameboard(Long memberId, Long milesRecieved, Long plays, Long tileAmounts, Set<Member> member, Set<Active_Rewards> activeRewards) {
+        this.memberId = memberId;
+        this.milesRecieved = milesRecieved;
+        this.plays = plays;
+        this.tileAmounts = tileAmounts;
+        this.member = member;
+        this.activeRewards = activeRewards;
+    }
+
+    public Gameboard() {
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public Long getMilesRecieved() {
+        return milesRecieved;
+    }
+
+    public void setMilesRecieved(Long milesRecieved) {
+        this.milesRecieved = milesRecieved;
+    }
+
+    public Long getPlays() {
+        return plays;
+    }
+
+    public void setPlays(Long plays) {
+        this.plays = plays;
+    }
+
+    public Long getTileAmounts() {
+        return tileAmounts;
+    }
+
+    public void setTileAmounts(Long tileAmounts) {
+        this.tileAmounts = tileAmounts;
+    }
+
+    public Set<Member> getMember() {
+        return member;
+    }
+
+    public void setMember(Set<Member> member) {
+        this.member = member;
+    }
+
+    public Set<Active_Rewards> getActiveRewards() {
+        return activeRewards;
+    }
+
+    public void setActiveRewards(Set<Active_Rewards> activeRewards) {
+        this.activeRewards = activeRewards;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gameboard gameboard = (Gameboard) o;
+        return Objects.equals(memberId, gameboard.memberId) && Objects.equals(milesRecieved, gameboard.milesRecieved) && Objects.equals(plays, gameboard.plays) && Objects.equals(tileAmounts, gameboard.tileAmounts) && Objects.equals(member, gameboard.member) && Objects.equals(activeRewards, gameboard.activeRewards);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(memberId, milesRecieved, plays, tileAmounts, member, activeRewards);
+    }
+
+    @Override
+    public String toString() {
+        return "Gameboard{" +
+                "memberId=" + memberId +
+                ", milesRecieved=" + milesRecieved +
+                ", plays=" + plays +
+                ", tileAmounts=" + tileAmounts +
+                ", member=" + member +
+                ", activeRewards=" + activeRewards +
+                '}';
+    }
 }
