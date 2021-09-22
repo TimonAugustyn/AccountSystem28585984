@@ -60,9 +60,9 @@
                 <version>${springfox-swagger.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.oracle</groupId>
+                <groupId>com.oracle.database.jdbc</groupId>
                 <artifactId>ojdbc8</artifactId>
-                <version>11.2.0.2.0</version>
+                <version>12.2.0.1</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
