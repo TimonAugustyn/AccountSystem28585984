@@ -1,54 +1,35 @@
-create table Member (
-  member_ID int(8) not null,
-  member_fname varchar(50) not null,
-  member_lname varchar(50) not null,
-    constraint pk_Member primary key (member_ID)
+set echo on
+
+DROP TABLE DEMO_ACCOUNT_TRANSACTION CASCADE CONSTRAINTS;
+DROP TABLE DEMO_ACCOUNT_TYPE CASCADE CONSTRAINTS;
+DROP SEQUENCE VIT_RSA_GENERIC_SEQ;
+
+create table DEMO_ACCOUNT_TYPE (
+    ACCOUNT_TYPE_ID number(15) not null,
+    MNEMONIC varchar2(50) not null,
+    ACCOUNT_TYPE_NAME varchar2(50) not null,
+    CREATION_DATE DATE not null,
+    constraint PK_TYPE primary key (ACCOUNT_TYPE_ID)
 );
 
-create table Active_Rewards (
-  member_ID int(8) not null,
-  plays int(8) not null,
-  driving_progress int(3) not null,
-  spending_progress int(3) not null,
-  fitness_progress int(3) not null,
-    constraint pk_AR primary key (member_ID, plays),
-    constraint fk_AR foreign key (member_ID)
-    references Member (member_ID) on delete set NULL
+CREATE SEQUENCE VIT_RSA_GENERIC_SEQ
+start with 1
+increment by 1
+minvalue 1
+maxvalue 1000
+cycle;
+
+create table DEMO_ACCOUNT_TRANSACTION (
+    TX_ID number(15) not null,
+    ACCOUNT_TYPE_ID number(15) not null,
+    MEMBER_ID number(15) not null,
+    AMOUNT number(4) not null,
+    TX_DATE DATE not null,
+    constraint PK_TRAN primary key (TX_ID),
+    constraint fk_ACCOUNT_TYPE_ID foreign key (ACCOUNT_TYPE_ID)
+    references DEMO_ACCOUNT_TYPE (ACCOUNT_TYPE_ID) on delete set NULL
 );
 
-create table Gameboard (
-  member_ID int(8) not null,
-  plays int(8) not null,
-  Tile_Amounts varchar(50) not null,
-  Miles_Recieved int(8) not null,
-    constraint pk_Gameboard primary key (member_ID, Miles_Recieved),
-    constraint fk_Gameboard foreign key (member_ID)
-    references Member (member_ID) on delete set NULL
-);
+COMMIT;
 
-create table Vouchers (
-  voucher_ID int(8) not null,
-  voucher_Cat varchar(50) not null,
-  voucher_Price varchar(50) not null,
-  voucher_Partner varchar(50) not null,
-  voucher_Name varchar(50) not null,
-    constraint pk_Vouchers primary key (voucher_ID)
-);
-
-create table Account (
-  account_ID int(8) not null,
-  member_ID int(8) not null,
-  miles int(8) not null,
-  Miles_Recieved int(8) not null,
-  plays int(8) not null,
-  voucher_ID int(8) not null,
-    constraint pk_Account primary key (account_ID, member_ID, plays),
-    constraint fk_Account_member foreign key (member_ID)
-    references Member (member_ID) on delete set NULL,
-    constraint fk_Account_plays foreign key (member_ID, plays)
-    references Active_Rewards (member_ID, plays) on delete set NULL,
-    constraint fk_Account_miles foreign key (member_ID, Miles_Recieved)
-    references Gameboard (member_ID, Miles_Recieved) on delete set NULL,
-    constraint fk_Account_voucher foreign key (voucher_ID)
-    references Vouchers (voucher_ID) on delete set NULL
-);
+set echo off
