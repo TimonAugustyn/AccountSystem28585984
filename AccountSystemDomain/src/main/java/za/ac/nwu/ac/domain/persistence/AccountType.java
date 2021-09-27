@@ -7,12 +7,12 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
+@Table(name = "DEMO_ACCOUNT_TYPE", schema = "TIMON")
 public class AccountType implements  Serializable {
 
     private static final long serialVersionUID = 3833725316797154577L;
     @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1)
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "TIMON.VIT_RSA_GENERIC_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
     @Column(name = "ACCOUNT_TYPE_ID")
     private Long accountTypeId;
@@ -41,8 +41,6 @@ public class AccountType implements  Serializable {
 
     public AccountType() {
     }
-
-    private Set<AccountTransaction> accountTransactions;
 
     public Long getAccountTypeId() {
         return accountTypeId;
@@ -77,6 +75,7 @@ public class AccountType implements  Serializable {
     }
 
     @OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    private Set<AccountTransaction> accountTransactions;
     public  Set<AccountTransaction> getAccountTransactions(){
         return accountTransactions;
     }

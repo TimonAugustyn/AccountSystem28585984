@@ -9,11 +9,11 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
+@Table(name = "DEMO_ACCOUNT_TRANSACTION", schema = "TIMON")
 public class AccountTransaction implements Serializable{
     private static final long serialVersionUID = 5320578342102714156L;
     @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1)
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "TIMON.VIT_RSA_GENERIC_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
     @Column(name = "TX_ID")
     private Long transactionId;
@@ -43,20 +43,20 @@ public class AccountTransaction implements Serializable{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_TYPE_ID")
-    public Long getTransactionId() {
-        return transactionId;
-    }
-
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
-
     public AccountType getAccountType() {
         return accountType;
     }
 
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
+    }
+
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
 
     public Long getMemberId() {

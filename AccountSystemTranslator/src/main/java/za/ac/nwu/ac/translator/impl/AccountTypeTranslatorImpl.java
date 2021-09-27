@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.domain.persistence.AccountType;
-import za.ac.nwu.ac.repo.service.AccountTypeRepository;
+import za.ac.nwu.ac.repo.persistence.AccountTypeRepository;
+import za.ac.nwu.ac.translator.AccountTypeTranslator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class AccountTypeTranslatorImpl implements AccountTypeTranslator{
+public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
 
     private final AccountTypeRepository accountTypeRepository;
 
@@ -37,6 +38,36 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator{
     public  AccountTypeDto create(AccountTypeDto accountTypeDto) {
         try {
             AccountType accountType = accountTypeRepository.save(accountTypeDto.getAccountType());
+            return new AccountTypeDto(accountType);
+        }catch (Exception e) {
+            throw new RuntimeException("Unable to save to the DB", e);
+        }
+    }
+
+    @Override
+    public  AccountTypeDto getAccountTypeByMnemonicNativeQuery(String mnemonic) {
+        try {
+            AccountType accountType = accountTypeRepository.getAccountTypeByMnemonicNativeQuery(mnemonic);
+            return new AccountTypeDto(accountType);
+        }catch (Exception e) {
+            throw new RuntimeException("Unable to save to the DB", e);
+        }
+    }
+
+    @Override
+    public  AccountTypeDto getAccountTypeByMnemonic(String mnemonic) {
+        try {
+            AccountType accountType = accountTypeRepository.getAccountTypeByMnemonic(mnemonic);
+            return new AccountTypeDto(accountType);
+        }catch (Exception e) {
+            throw new RuntimeException("Unable to save to the DB", e);
+        }
+    }
+
+    @Override
+    public  AccountTypeDto getAccountTypeDtoByMnemonic(String mnemonic) {
+        try {
+            AccountType accountType = accountTypeRepository.getAccountTypeDtoByMnemonic(mnemonic);
             return new AccountTypeDto(accountType);
         }catch (Exception e) {
             throw new RuntimeException("Unable to save to the DB", e);
