@@ -11,7 +11,6 @@ import java.util.Objects;
 
 @ApiModel(value = "AccountType", description = "A DTO that represents the AccountType")
 public class AccountTypeDto implements Serializable{
-    private static final long serialVersionUID = -5346853206480289868L;
 
     private String mnemonic;
     private String accountTypeName;
@@ -46,7 +45,7 @@ public class AccountTypeDto implements Serializable{
     @ApiModelProperty(position = 2,
             value = "AccountType Name",
             name = "Name",
-            notes = "The Name of the account type",
+            notes = "The Name of the AccountType",
             dataType = "java.lang.String",
             example = "Miles",
             allowEmptyValue = false,

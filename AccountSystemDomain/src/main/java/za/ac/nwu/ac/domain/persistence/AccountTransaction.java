@@ -30,8 +30,17 @@ public class AccountTransaction implements Serializable{
     @Column(name = "TX_DATE")
     private LocalDate transactionDate;
 
+//    private AccountTransactionDetails details;
+
     public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
+        this.accountType = accountType;
+        this.memberId = memberId;
+        this.amount = amount;
+        this.transactionDate = transactionDate;
+    }
+
+    public AccountTransaction(AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
         this.accountType = accountType;
         this.memberId = memberId;
         this.amount = amount;
@@ -46,6 +55,11 @@ public class AccountTransaction implements Serializable{
     public AccountType getAccountType() {
         return accountType;
     }
+
+//    @OneToOne(targetEntity = AccountTransactionDetails.class, fetch = FetchType.LAZY, mappedBy = "accountTransaction", orphanRemoval = true, cascade = CascadeType.PERSIST)
+//    public AccountTransactionDetails getDetails(){
+//        return details;
+//    }
 
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
