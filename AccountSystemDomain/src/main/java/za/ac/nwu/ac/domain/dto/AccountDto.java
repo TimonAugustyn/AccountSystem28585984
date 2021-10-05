@@ -13,12 +13,12 @@ public class AccountDto implements Serializable {
     private Long memberId;
     private String fName;
     private String lName;
-    private Long miles;
+    private Integer miles;
 
     public AccountDto() {
     }
 
-    public AccountDto(Long memberId, String fName, String lName, Long miles) {
+    public AccountDto(Long memberId, String fName, String lName, Integer miles) {
         this.memberId = memberId;
         this.fName = fName;
         this.lName = lName;
@@ -32,25 +32,11 @@ public class AccountDto implements Serializable {
         this.setMiles(account.getMiles());
     }
 
-//    @ApiModelProperty(position = 1,
-//            value = "Account MemberID",
-//            name = "MemberID",
-//            notes = "Uniquely identifies the member ID",
-//            dataType = "java.lang.String",
-//            example = "1234",
-//            required = true)
     public Long getMemberId() {return memberId;}
     public void setMemberId(Long memberId) {this.memberId = memberId;}
 
-//    @ApiModelProperty(position = 2,
-//            value = "Account Miles",
-//            name = "Miles",
-//            notes = "Uniquely identifies the account Miles",
-//            dataType = "java.lang.String",
-//            example = "20",
-//            required = true)
-    public Long getMiles() {return miles;}
-    public void setMiles(Long miles) {this.miles = miles;}
+    public Integer getMiles() {return miles;}
+    public void setMiles(Integer miles) {this.miles = miles;}
 
     public String getfName() {
         return fName;
@@ -72,8 +58,12 @@ public class AccountDto implements Serializable {
     }
     @JsonIgnore
     public Account getMilesByMemberName(){
-        return new Account(getMemberId(),getfName(), getlName(), getMiles());
+        return new Account(getMemberId(), getfName(), getlName(), getMiles());
     }
+    @JsonIgnore
+//    public Integer add(){
+//        return new Integer(getMiles(), getfName(), getlName());
+//    }
 
     @Override
     public boolean equals(Object o) {

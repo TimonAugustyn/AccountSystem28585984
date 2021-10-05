@@ -11,7 +11,13 @@ public class Account implements Serializable {
     private Long memberId;
     private String fName;
     private String lName;
-    private Long miles;
+    private Integer miles;
+
+    public Account(Integer miles, String getfName, String getlName) {
+        this.miles = miles;
+        this.fName = fName;
+        this.lName = lName;
+    }
 
     @Id
 //    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "TIMON.VIT_RSA_GENERIC_SEQ", allocationSize = 1)
@@ -32,14 +38,14 @@ public class Account implements Serializable {
     }
 
     @Column(name = "MILES")
-    public Long getMiles() {
+    public Integer getMiles() {
         return miles;
     }
 
     public Account() {
     }
 
-    public Account(Long memberId, String fName, String lName, Long miles) {
+    public Account(Long memberId, String fName, String lName, Integer miles) {
         this.memberId = memberId;
         this.fName = fName;
         this.lName = lName;
@@ -58,7 +64,7 @@ public class Account implements Serializable {
         this.lName = lName;
     }
 
-    public void setMiles(Long miles) {
+    public void setMiles(Integer miles) {
         this.miles = miles;
     }
 

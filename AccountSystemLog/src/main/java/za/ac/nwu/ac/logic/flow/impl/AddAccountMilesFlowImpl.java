@@ -2,7 +2,6 @@ package za.ac.nwu.ac.logic.flow.impl;
 
 import org.springframework.stereotype.Component;
 import za.ac.nwu.ac.domain.dto.AccountDto;
-import za.ac.nwu.ac.domain.persistence.Account;
 import za.ac.nwu.ac.logic.flow.AddAccountMilesFlow;
 import za.ac.nwu.ac.translator.AccountTranslator;
 
@@ -17,8 +16,12 @@ public class AddAccountMilesFlowImpl implements AddAccountMilesFlow {
     }
 
     @Override
-    public AccountDto add(AccountDto accountDto){
-        Account account = accountDto.getAccount();
-        return accountTranslator.save(account);
+    public Integer add(Integer miles, String fName, String lName){
+        return accountTranslator.add(miles, fName, lName);
+    }
+
+    @Override
+    public Integer sub(Integer miles, String fName, String lName){
+        return accountTranslator.add(miles, fName, lName);
     }
 }

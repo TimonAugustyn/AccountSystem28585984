@@ -11,4 +11,8 @@ public interface AccountTranslator {
     AccountDto save(Account account);
 
     AccountDto getMilesByMemberName(String fName, String lName);
+
+    Integer add(Integer miles, String fName, String lName);
+
+    Integer sub(Integer miles, String fName, String lName);
 }

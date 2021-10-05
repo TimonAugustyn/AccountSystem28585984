@@ -59,7 +59,7 @@ public class AccountController {
     }
 
     @GetMapping("See Account Miles")
-    @ApiOperation(value = "Fetches the specified Account.", notes = "Fetches the Account corresponding to the given memberId")
+    @ApiOperation(value = "Fetches the specified Account.", notes = "Fetches the Account corresponding to the given member fName and lName")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Goal Found", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
@@ -67,11 +67,45 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)
     })
     public ResponseEntity<GeneralResponse<AccountDto>> getMilesByMemberName(
-            @ApiParam(value = "The memberID that uniquely identifies the Account.",
+            @ApiParam(value = "The first and last name that uniquely identifies the Account.",
                     required = true)
             @RequestParam("fName") final String fName, @RequestParam("lName") final String lName){
         AccountDto account= fetchAccountFlow.getMilesByMemberName(fName, lName);
         GeneralResponse<AccountDto> response = new GeneralResponse<>(true, account);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("Add Miles To Account")
+    @ApiOperation(value = "Adds the specified amount of Miles to the Account.", notes = "Adds the specified amount of Miles to the Account")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Goal Found", response = GeneralResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code = 404, message = "Resource Not Found", response = GeneralResponse.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)
+    })
+    public ResponseEntity<GeneralResponse<Integer>> add(
+            @ApiParam(value = "The first and last name that uniquely identifies the Account.",
+                    required = true)
+            @RequestParam("fName") final String fName, @RequestParam("lName") final String lName, @RequestParam("miles") final Integer miles){
+        Integer account= fetchAccountFlow.add(miles, fName, lName);
+        GeneralResponse<Integer> response = new GeneralResponse<>(true, account);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("Subtract Miles From Account")
+    @ApiOperation(value = "Subtracts the specified amount of Miles from the Account.", notes = "Subtracts the specified amount of Miles from the Account")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Goal Found", response = GeneralResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code = 404, message = "Resource Not Found", response = GeneralResponse.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)
+    })
+    public ResponseEntity<GeneralResponse<Integer>> sub(
+            @ApiParam(value = "The first and last name that uniquely identifies the Account.",
+                    required = true)
+            @RequestParam("fName") final String fName, @RequestParam("lName") final String lName, @RequestParam("miles") final Integer miles){
+        Integer account= fetchAccountFlow.sub(miles, fName, lName);
+        GeneralResponse<Integer> response = new GeneralResponse<>(true, account);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

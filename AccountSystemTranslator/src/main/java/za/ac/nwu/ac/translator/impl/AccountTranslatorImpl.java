@@ -52,4 +52,26 @@ public class AccountTranslatorImpl implements AccountTranslator {
             throw new RuntimeException("Unable to find in DB", e);
         }
     }
+
+    @Override
+    public Integer add(Integer miles, String fName, String lName){
+        try {
+
+            Integer account = accountRepository.add(miles, fName, lName);
+            return new Integer(account);
+        }catch (Exception e) {
+            throw new RuntimeException("Unable to find in DB", e);
+        }
+    }
+
+    @Override
+    public Integer sub(Integer miles, String fName, String lName){
+        try {
+
+            Integer account = accountRepository.sub(miles, fName, lName);
+            return new Integer(account);
+        }catch (Exception e) {
+            throw new RuntimeException("Unable to find in DB", e);
+        }
+    }
 }
