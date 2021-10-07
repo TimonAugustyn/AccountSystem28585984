@@ -19,10 +19,7 @@ import za.ac.nwu.ac.logic.flow.CreateAccountFlow;
 import za.ac.nwu.ac.logic.flow.FetchAccountFlow;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -94,8 +91,7 @@ public class AccountControllerTest {
         AccountDto accountDto = new AccountDto(28585988L, "Simon", "Bugustyn", 150);
 
         when(createAccountFlow.create(eq(accountDto))).then(returnsFirstArg());
-        MvcResult mvcResult =
-                mockMvc.perform(post(ACCOUNT_CONTROLLER_URL)
+        MvcResult mvcResult = mockMvc.perform(post(ACCOUNT_CONTROLLER_URL)
                                 .servletPath(APP_URL)
                                 .accept(MediaType.APPLICATION_JSON)
                                 .content(accountTypeToBeCreated)

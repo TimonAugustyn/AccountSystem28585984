@@ -19,6 +19,10 @@ public class Account implements Serializable {
         this.lName = lName;
     }
 
+    public Account(Long memberId) {
+        this.miles = miles;
+    }
+
     @Id
 //    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "TIMON.VIT_RSA_GENERIC_SEQ", allocationSize = 1)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")

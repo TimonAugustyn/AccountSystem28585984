@@ -58,7 +58,7 @@ public class AccountDto implements Serializable {
     }
     @JsonIgnore
     public Account getMilesByMemberName(){
-        return new Account(getMemberId(), getfName(), getlName(), getMiles());
+        return new Account(getMemberId());
     }
     @JsonIgnore
 //    public Integer add(){

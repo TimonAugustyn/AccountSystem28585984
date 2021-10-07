@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +14,14 @@ import za.ac.nwu.ac.domain.dto.AccountDto;
 import za.ac.nwu.ac.domain.service.GeneralResponse;
 import za.ac.nwu.ac.logic.flow.CreateAccountFlow;
 import za.ac.nwu.ac.logic.flow.FetchAccountFlow;
+import za.ac.nwu.ac.logic.flow.impl.CreateAccountFlowImpl;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("Account")
 public class AccountController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
 
     private final FetchAccountFlow fetchAccountFlow;
     private final CreateAccountFlow createAccountFlow;
@@ -37,8 +41,11 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)
     })
     public ResponseEntity<GeneralResponse<List<AccountDto>>> getAll(){
+        long startTime = System.nanoTime();
+        LOGGER.debug("Create a new Account");
         List<AccountDto> account = fetchAccountFlow.getAllAccounts();
         GeneralResponse<List<AccountDto>> response = new GeneralResponse<>(true, account);
+        LOGGER.info("Response time: {}", ((System.nanoTime() - startTime) / 1000000L));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -53,8 +60,11 @@ public class AccountController {
             @ApiParam(value = "Request body to create a new Account.",
                     required = true)
             @RequestBody AccountDto account){
+        long startTime = System.nanoTime();
+        LOGGER.debug("Create a new Account");
         AccountDto accountResponse = createAccountFlow.create(account);
         GeneralResponse<AccountDto> response = new GeneralResponse<>(true, accountResponse);
+        LOGGER.info("Response time: {}", ((System.nanoTime() - startTime) / 1000000L));
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
@@ -70,8 +80,11 @@ public class AccountController {
             @ApiParam(value = "The first and last name that uniquely identifies the Account.",
                     required = true)
             @RequestParam("fName") final String fName, @RequestParam("lName") final String lName){
+        long startTime = System.nanoTime();
+        LOGGER.debug("Create a new Account");
         AccountDto account= fetchAccountFlow.getMilesByMemberName(fName, lName);
         GeneralResponse<AccountDto> response = new GeneralResponse<>(true, account);
+        LOGGER.info("Response time: {}", ((System.nanoTime() - startTime) / 1000000L));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -87,8 +100,11 @@ public class AccountController {
             @ApiParam(value = "The first and last name that uniquely identifies the Account.",
                     required = true)
             @RequestParam("fName") final String fName, @RequestParam("lName") final String lName, @RequestParam("miles") final Integer miles){
+        long startTime = System.nanoTime();
+        LOGGER.debug("Create a new Account");
         Integer account= fetchAccountFlow.add(miles, fName, lName);
         GeneralResponse<Integer> response = new GeneralResponse<>(true, account);
+        LOGGER.info("Response time: {}", ((System.nanoTime() - startTime) / 1000000L));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -104,8 +120,11 @@ public class AccountController {
             @ApiParam(value = "The first and last name that uniquely identifies the Account.",
                     required = true)
             @RequestParam("fName") final String fName, @RequestParam("lName") final String lName, @RequestParam("miles") final Integer miles){
+        long startTime = System.nanoTime();
+        LOGGER.debug("Create a new Account");
         Integer account= fetchAccountFlow.sub(miles, fName, lName);
         GeneralResponse<Integer> response = new GeneralResponse<>(true, account);
+        LOGGER.info("Response time: {}", ((System.nanoTime() - startTime) / 1000000L));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
