@@ -24,8 +24,6 @@ public class Account implements Serializable {
     }
 
     @Id
-//    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "TIMON.VIT_RSA_GENERIC_SEQ", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
     @Column(name = "MEMBER_ID")
     public Long getMemberId() {
         return memberId;

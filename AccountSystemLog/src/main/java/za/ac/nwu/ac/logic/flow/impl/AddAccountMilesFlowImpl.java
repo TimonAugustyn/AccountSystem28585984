@@ -22,6 +22,6 @@ public class AddAccountMilesFlowImpl implements AddAccountMilesFlow {
 
     @Override
     public Integer sub(Integer miles, String fName, String lName){
-        return accountTranslator.add(miles, fName, lName);
+        return accountTranslator.sub(miles, fName, lName);
     }
 }

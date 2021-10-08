@@ -18,7 +18,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query(
             value = "UPDATE "+"TIMON.ACCOUNT "+
                     "SET "+"Miles = Miles + :miles "+
-                    "WHERE FNAME = :fName "+"AND "+"LNAME = :lName", nativeQuery = true
+                    "WHERE FNAME = :fName "+"AND "+"LNAME = :lName ", nativeQuery = true
     )
     Integer add(Integer miles, String fName, String lName);
 

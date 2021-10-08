@@ -16,6 +16,8 @@ import za.ac.nwu.ac.logic.flow.CreateAccountFlow;
 import za.ac.nwu.ac.logic.flow.FetchAccountFlow;
 import za.ac.nwu.ac.logic.flow.impl.CreateAccountFlowImpl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -105,6 +107,7 @@ public class AccountController {
         Integer account= fetchAccountFlow.add(miles, fName, lName);
         GeneralResponse<Integer> response = new GeneralResponse<>(true, account);
         LOGGER.info("Response time: {}", ((System.nanoTime() - startTime) / 1000000L));
+        LOGGER.info("Date miles where added: {}", LocalDate.now());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
